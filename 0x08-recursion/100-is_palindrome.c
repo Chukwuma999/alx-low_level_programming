@@ -1,25 +1,58 @@
 #include "main.h"
 
-/* Solution credit goes to Arthur Damm, cohort 8. */
+/**
+ *_strlen_recursion - counts length of a string
+ *
+ *@s: string to test
+ *Return: length of a string
+ */
+
+int _strlen_recursion(char *s)
+{
+	if (*s == '\0')
+		return (0);
+	else
+		return (1 + _strlen_recursion(++s));
+}
+
 
 /**
- * wildcmp - compares two strings and returns 1 if the strings can be
- * considered identical, otherwise return 0
- * @s1: input string1
- * @s2: input string2
- * Return: 1 if true, 0 if false
+ *test_pal - tests if string is palindrome
+ *
+ *@s: string to test
+ *@f: first character of a string
+ *@n: length of a string
+ *
+ *Return: 1 if palindrome, 0 if else
  */
-int wildcmp(char *s1, char *s2)
+
+int test_pal(char *s, int f, int n)
 {
-	if (*s1 == '\0')
-	{
-		if (*s2 != '\0' && *s2 == '*')
-			return (wildcmp(s1, s2 + 1));
-		return (*s2 == '\0');
-	}
-	if (*s2 == '*')
-		return (wildcmp(s1 + 1, s2) || wildcmp(s1, s2 + 1));
-	else if (*s1 == *s2)
-		return (wildcmp(s1 + 1, s2 + 1));
-	return (0);
+	if (f > n / 2)
+		return (1);
+
+	if (n == 1 || n == 0)        /* if one character or empty*/
+		return (1);
+
+	if (s[f] != s[n - 1 - f])          /* if first index != last index */
+		return (0);
+
+	else          /* if first index = last index */
+		return (test_pal(s, ++f, n)); /* recursively check f+1,l-1 */
+
+}
+
+/**
+ *is_palindrome - states if a string is a palindrome
+ *
+ *@s: string to test
+ *
+ *Return: 1 is palindrome, 0 if else
+ */
+
+int is_palindrome(char *s)
+{
+	int n = _strlen_recursion(s);
+
+	return (test_pal(s, 0, n));
 }
