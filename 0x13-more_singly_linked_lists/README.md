@@ -4,7 +4,7 @@
 
 # Description:
 
-    main_test_files ----- folder holds test files that showcase examples of how to use functions
+
     lists.h ---------- holds files' function prototypes
     Files that start with:
 
