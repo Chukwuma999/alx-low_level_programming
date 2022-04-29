@@ -1,70 +1,61 @@
 #include "main.h"
 
 /**
- * binary_to_uint - convert binary to unsigned int
+ * _strlen - returns length of string (modified)
+ * @s: string (const)
+ * Return: length of string
+ */
+
+int _strlen(const char *s)
+{
+	int len = 0;
+
+	while (s[len] != '\0')
+	{
+		len++;
+	}
+
+	return (len);
+}
+
+/**
+ * power - exponents
+ * @base: base
+ * @exp: exponent
+ * Return: result (int)
+ */
+
+int power(int base, int exp)
+{
+	int i, num;
+
+	num = 1;
+	for (i = 0; i < exp; ++i)
+		num *= base;
+
+	return (num);
+}
+
+/**
+ * binary_to_uint - converts a binary number to an unsigned int
  * @b: binary
  * Return: unsigned int
  */
+
 unsigned int binary_to_uint(const char *b)
 {
+	unsigned int sum;
+	int length, i;
 
-	int len = 0, i;
-	unsigned int sum = 0;
-
+	sum = 0;
 	if (b == NULL)
 		return (sum);
-
-	/* find string length */
-	while (b[len] != '\0')
-		len++;
-	len -= 1;
-
-	/* iterate string and if '1' then multiply by power of 2 */
-	/* get power of 2 via binary (e.g. 1<<2 = 100 in binary = 4) */
-	i = 0;
-	while (b[i])
+	length = _strlen(b);
+	for (i = length - 1; i >= 0; i--)
 	{
-		if ((b[i] != '0') && (b[i] != '1'))
-			return (sum);
-
-		if (b[i] == '1')
-			sum += (1 * (1 << len));
-		i++;
-		len--;
+		if (b[i] != '0' && b[i] != '1')
+			return (0);
+		sum += (b[i] - '0') * power(2, length - i - 1);
 	}
-
 	return (sum);
 }
-
-/*
- * alternative method not using bitwise but a power of 2
- *
- *
- * unsigned int binary_to_uint(const char *b)
- *{
- *
- *	int len = 0, pow = 1;
- *	unsigned int sum = 0, error = 0;
- *
- *	if (b == NULL)
- *		return (error);
- *
- *	while (b[len] != '\0') // find string length
- *		len++;
- *	len -= 1;
- *
- *	while (len >= 0) // iterate from back of string
- *	{
- *		if ((b[len] != '0') && (b[len] != '1'))
- *			return (error);
- *
- *		if (b[len] == '1') // add appropriate power of 2 if '1'
- *			sum += pow;
- *
- *		pow *= 2; // update power of 2
- *		len--;
- *	}
- *
- *	return (sum);
- *}
- */
