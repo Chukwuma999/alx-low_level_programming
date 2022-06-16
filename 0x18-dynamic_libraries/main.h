@@ -1,6 +1,6 @@
-#ifndef MAIN_H
+#ifndef HOLBERTON_H
 
-#define MAIN_H
+#define HOLBERTON_H
 
 #define EXIT_SUCCESS 0
 
