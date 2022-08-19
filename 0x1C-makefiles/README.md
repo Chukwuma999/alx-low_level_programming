@@ -5,7 +5,7 @@
 ![](https://image.ibb.co/b7X82y/Capture.png)
 
 ### Description of what each file shows:
-* holberton.c ---- function that displays visual seahorse
+* school.c ---- function that displays visual seahorse
 * main.c --------- program that holds above function
 * Files that start with:
 0. simple makefile that next files will build on

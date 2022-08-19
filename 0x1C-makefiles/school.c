@@ -1,7 +1,7 @@
 #include "m.h"
 
 /**
- * print_holberton - print the logo of Holberton
+ * print_holberton - print the logo of Holberton School
  *
  * Return: Nothing
  *
